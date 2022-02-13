@@ -1,9 +1,16 @@
+import 'dart:developer';
+import 'dart:ui';
+
+import 'package:bordered_text/bordered_text.dart';
+import 'package:chuck_norris_app/api/api.dart';
 import 'package:chuck_norris_app/const/app_res.dart';
 import 'package:chuck_norris_app/widget/aboutButton.dart';
 import 'package:chuck_norris_app/widget/button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'categories.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
@@ -13,14 +20,6 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  late Dio dio;
-
-  @override
-  void initState() {
-    super.initState();
-    dio = Dio();
-  }
-
   @override
   Widget build(BuildContext context) {
     // var screenSize = MediaQuery.of(context).size;
@@ -45,9 +44,7 @@ class _MenuPageState extends State<MenuPage> {
                   height: 64,
                   child: ChuckButton(
                     AppRes.randomJoke,
-                    onPressed: () {
-                      print("random joke fired");
-                    },
+                    onPressed: _randomJokeCallback,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -55,9 +52,7 @@ class _MenuPageState extends State<MenuPage> {
                   height: 64,
                   child: ChuckButton(
                     AppRes.categories,
-                    onPressed: () {
-                      print("categories fired");
-                    },
+                    onPressed: _categoriesCallback,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -76,5 +71,43 @@ class _MenuPageState extends State<MenuPage> {
         ),
       ),
     );
+  }
+
+  void _randomJokeCallback() async {
+    final String joke = await Api.getRandomJoke();
+    _showJoke(joke);
+  }
+
+  void _showJoke(String j) {
+    final content = BackdropFilter(
+      filter: ImageFilter.blur(
+        sigmaX: 25,
+        sigmaY: 25,
+      ),
+      child: BorderedText(
+        strokeWidth: 5,
+        strokeColor: Color(0xff000000),
+        child: Text(
+          j,
+          style: const TextStyle(
+            fontFamily: "Courier",
+            fontSize: 24,
+          ),
+        ),
+      ),
+    );
+    final int duration = (j.split(' ').length * .35).round();
+    print("The text is there for $duration seconds");
+    var snackBar = SnackBar(
+      // backgroundColor: Color(0x00000000),
+      content: content,
+      duration: Duration(seconds: duration),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _categoriesCallback() async {
+    final page = Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const CategoriesPage()));
   }
 }

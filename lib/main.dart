@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
         accentColor: const Color(0xff29ABE2),
       ),
       home: const MenuPage(),
+      // routes: {
+      //   '/home': MaterialPageRoute(fullscreenDialog: true),
+      // },
     );
   }
 }
