@@ -99,15 +99,18 @@ class _MenuPageState extends State<MenuPage> {
     final int duration = (j.split(' ').length * .35).round();
     print("The text is there for $duration seconds");
     var snackBar = SnackBar(
-      // backgroundColor: Color(0x00000000),
       content: content,
       duration: Duration(seconds: duration),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    // todo https://pub.dev/packages/rflutter_alert
   }
 
   void _categoriesCallback() async {
-    final page = Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CategoriesPage()));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const CategoriesPage(),
+      ),
+    );
   }
 }
