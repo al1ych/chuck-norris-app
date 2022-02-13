@@ -15,6 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Chuck Norris App',
       theme: ThemeData(
         primaryColor: const Color(0xffF15A24),
+        backgroundColor: const Color(0xff2B2B2B),
+        accentColor: const Color(0xff29ABE2),
       ),
       home: const MenuPage(),
     );

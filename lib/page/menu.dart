@@ -1,6 +1,8 @@
-import 'package:chuck_norris_app/const/AppRes.dart';
+import 'package:chuck_norris_app/const/app_res.dart';
+import 'package:chuck_norris_app/widget/aboutButton.dart';
 import 'package:chuck_norris_app/widget/button.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatefulWidget {
@@ -21,17 +23,56 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
+    // var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Image.network(
-                'https://api.chucknorris.io/img/chucknorris_logo_coloured_small.png'),
-            const Text("HI"),
-            ChuckButton(AppRes.randomJoke),
-            ChuckButton(AppRes.categories),
-            ChuckButton(AppRes.search),
-          ],
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                AboutButton(
+                  onPressed: () {
+                    print("about btn");
+                  },
+                ),
+                Image.network(AppRes.logoUrl),
+                const SizedBox(height: 30),
+                SizedBox(
+                  height: 64,
+                  child: ChuckButton(
+                    AppRes.randomJoke,
+                    onPressed: () {
+                      print("random joke fired");
+                    },
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 64,
+                  child: ChuckButton(
+                    AppRes.categories,
+                    onPressed: () {
+                      print("categories fired");
+                    },
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 64,
+                  child: ChuckButton(
+                    AppRes.search,
+                    onPressed: () {
+                      print("search fired");
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
