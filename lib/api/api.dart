@@ -7,8 +7,9 @@ import 'package:dio/dio.dart';
 class Api {
   static final Dio _dio = Dio();
 
-  static Future<String> getRandomJoke() async {
-    const String requestUrl = "${AppRes.apiBaseUrl}/jokes/random";
+  static Future<String> getRandomJoke({String? category}) async {
+    final String appendix =  (category != null ? "?category=" + category : "");
+    final String requestUrl = "${AppRes.apiBaseUrl}/jokes/random" + appendix;
     final Response response = await _dio.get(requestUrl);
     final String joke = response.data['value'];
     log("------ Request ------");
@@ -19,7 +20,7 @@ class Api {
   }
 
   static Future<List<dynamic>> getCategories() async {
-    const String requestUrl = "${AppRes.apiBaseUrl}/jokes/categories";
+    final String requestUrl = "${AppRes.apiBaseUrl}/jokes/categories";
     final Response response = await _dio.get(requestUrl);
     final List<dynamic> categoriesRaw = response.data;
     List<String> categories = categoriesRaw.map((x) => "$x").toList();

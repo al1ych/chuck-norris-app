@@ -4,6 +4,8 @@ import 'package:chuck_norris_app/api/api.dart';
 import 'package:chuck_norris_app/widget/button.dart';
 import 'package:flutter/material.dart';
 
+import '../functionality.dart';
+
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({Key? key}) : super(key: key);
 
@@ -22,9 +24,10 @@ class CategoriesPage extends StatelessWidget {
               String categoryTitle = data[index];
               return ChuckButton(
                 categoryTitle,
-                onPressed: () {
+                onPressed: () async {
                   print("tapped $categoryTitle");
-
+                  final String joke = await Api.getRandomJoke(category: categoryTitle);
+                  Functionality.showJoke(context, joke);
                 },
               );
             },

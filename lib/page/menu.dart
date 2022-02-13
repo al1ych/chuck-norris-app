@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../functionality.dart';
 import 'categories.dart';
 
 class MenuPage extends StatefulWidget {
@@ -75,35 +76,7 @@ class _MenuPageState extends State<MenuPage> {
 
   void _randomJokeCallback() async {
     final String joke = await Api.getRandomJoke();
-    _showJoke(joke);
-  }
-
-  void _showJoke(String j) {
-    final content = BackdropFilter(
-      filter: ImageFilter.blur(
-        sigmaX: 25,
-        sigmaY: 25,
-      ),
-      child: BorderedText(
-        strokeWidth: 5,
-        strokeColor: Color(0xff000000),
-        child: Text(
-          j,
-          style: const TextStyle(
-            fontFamily: "Courier",
-            fontSize: 24,
-          ),
-        ),
-      ),
-    );
-    final int duration = (j.split(' ').length * .35).round();
-    print("The text is there for $duration seconds");
-    var snackBar = SnackBar(
-      content: content,
-      duration: Duration(seconds: duration),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    // todo https://pub.dev/packages/rflutter_alert
+    Functionality.showJoke(context, joke);
   }
 
   void _categoriesCallback() async {
