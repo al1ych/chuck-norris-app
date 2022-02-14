@@ -14,4 +14,12 @@ class AppRes {
   static const String randomJoke = "Random joke";
   static const String categories = "Categories";
   static const String search = "Search";
+
+  // about page
+  static const String aboutText = "I am a 3rd year student at Innopolis\n\n"
+      "I work with Flutter for about a year at this point\n\n"
+      "And I am here to learn more and practice!\n\n"
+      "You can contact me on Telegram: @aladdinych\n\n"
+      "P. S. How do I get into Yandex? 🤔";
 }
+

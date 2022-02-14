@@ -12,6 +12,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../utils.dart';
+import 'about.dart';
 import 'categories.dart';
 
 class MenuPage extends StatefulWidget {
@@ -36,9 +37,7 @@ class _MenuPageState extends State<MenuPage> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 AboutButton(
-                  onPressed: () {
-                    print("about btn");
-                  },
+                  onPressed: _aboutCallback,
                 ),
                 Image.network(AppRes.logoUrl),
                 const SizedBox(height: 30),
@@ -70,6 +69,26 @@ class _MenuPageState extends State<MenuPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _aboutCallback() async {
+    await showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('About me!'),
+          content: const AboutPage(),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 

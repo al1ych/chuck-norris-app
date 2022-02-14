@@ -12,30 +12,34 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      key: key,
-      controller: controller,
-      onSubmitted: onSubmitted,
-      autofocus: true,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(36),
-          borderSide: BorderSide(
-            color: Theme.of(context).primaryColor,
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: TextField(
+        key: key,
+        controller: controller,
+        onSubmitted: onSubmitted,
+        autofocus: true,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(36),
+            borderSide: BorderSide(
+              color: Theme.of(context).primaryColor,
+            ),
           ),
-        ),
-        filled: true,
-        fillColor: Colors.white,
-        focusColor: Theme.of(context).primaryColor,
-        floatingLabelBehavior: FloatingLabelBehavior.never,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
-        labelText: 'Your query goes here...\n(if you dare)',
-        labelStyle: const TextStyle(
-          fontFamily: "Courier",
-          fontSize: 14,
-          fontWeight: FontWeight.w900,
-          letterSpacing: 0.3,
-          color: Color(0xff401A07),
+          filled: true,
+          fillColor: Colors.white,
+          focusColor: Theme.of(context).primaryColor,
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+          labelText: 'Your query goes here...\n(if you dare)',
+          labelStyle: const TextStyle(
+            fontFamily: "Courier",
+            fontSize: 14,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 0.3,
+            color: Color(0xff401A07),
+          ),
         ),
       ),
     );

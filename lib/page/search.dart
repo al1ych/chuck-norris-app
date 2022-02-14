@@ -1,4 +1,5 @@
 import 'package:chuck_norris_app/const/app_res.dart';
+import 'package:chuck_norris_app/widget/button.dart';
 import 'package:chuck_norris_app/widget/pageTitleText.dart';
 import 'package:chuck_norris_app/widget/searchField.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,15 @@ class SearchPage extends StatelessWidget {
                         );
                       },
                     );
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 64,
+                child: ChuckButton(
+                  "Search!",
+                  onPressed: () async {
+                    print("search pressed");
                   },
                 ),
               ),
