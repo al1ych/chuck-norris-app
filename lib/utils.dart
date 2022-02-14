@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 
-abstract class Functionality {
+abstract class Utils {
   static void showJoke(context, String j) {
     final content = BackdropFilter(
       filter: ImageFilter.blur(

@@ -7,27 +7,29 @@ import 'package:dio/dio.dart';
 class Api {
   static final Dio _dio = Dio();
 
+  static void _printDebug(String reqUrl, Response res) {
+    log("------ Request ------");
+    log(reqUrl);
+    log("------ Response ------");
+    log(res.toString());
+    log("------ End ------");
+  }
+
   static Future<String> getRandomJoke({String? category}) async {
-    final String appendix =  (category != null ? "?category=" + category : "");
+    final String appendix = (category != null ? "?category=" + category : "");
     final String requestUrl = "${AppRes.apiBaseUrl}/jokes/random" + appendix;
     final Response response = await _dio.get(requestUrl);
     final String joke = response.data['value'];
-    log("------ Request ------");
-    log(requestUrl);
-    log("------ Response ------");
-    log(response.toString());
+    _printDebug(requestUrl, response);
     return joke;
   }
 
   static Future<List<dynamic>> getCategories() async {
-    final String requestUrl = "${AppRes.apiBaseUrl}/jokes/categories";
+    const String requestUrl = "${AppRes.apiBaseUrl}/jokes/categories";
     final Response response = await _dio.get(requestUrl);
     final List<dynamic> categoriesRaw = response.data;
     List<String> categories = categoriesRaw.map((x) => "$x").toList();
-    log("------ Request ------");
-    log(requestUrl);
-    log("------ Response ------");
-    log(response.toString());
+    _printDebug(requestUrl, response);
     return categories;
   }
 }

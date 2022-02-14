@@ -4,13 +4,14 @@ import 'dart:ui';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:chuck_norris_app/api/api.dart';
 import 'package:chuck_norris_app/const/app_res.dart';
+import 'package:chuck_norris_app/page/search.dart';
 import 'package:chuck_norris_app/widget/aboutButton.dart';
 import 'package:chuck_norris_app/widget/button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../functionality.dart';
+import '../utils.dart';
 import 'categories.dart';
 
 class MenuPage extends StatefulWidget {
@@ -61,9 +62,7 @@ class _MenuPageState extends State<MenuPage> {
                   height: 64,
                   child: ChuckButton(
                     AppRes.search,
-                    onPressed: () {
-                      print("search fired");
-                    },
+                    onPressed: _searchCallback,
                   ),
                 ),
               ],
@@ -76,13 +75,21 @@ class _MenuPageState extends State<MenuPage> {
 
   void _randomJokeCallback() async {
     final String joke = await Api.getRandomJoke();
-    Functionality.showJoke(context, joke);
+    Utils.showJoke(context, joke);
   }
 
   void _categoriesCallback() async {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const CategoriesPage(),
+      ),
+    );
+  }
+
+  void _searchCallback() async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SearchPage(),
       ),
     );
   }
