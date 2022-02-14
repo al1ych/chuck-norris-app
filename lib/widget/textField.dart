@@ -16,6 +16,7 @@ class ChuckField extends StatelessWidget {
       key: key,
       controller: controller,
       onSubmitted: onSubmitted,
+      autofocus: true,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         labelText: 'Your query goes here...',
