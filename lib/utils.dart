@@ -8,28 +8,26 @@ abstract class Utils {
   static void showJoke(context, String j) {
     final content = BackdropFilter(
       filter: ImageFilter.blur(
-        sigmaX: 25,
-        sigmaY: 25,
+        sigmaX: 20,
+        sigmaY: 20,
       ),
-      child: BorderedText(
-        strokeWidth: 3,
-        strokeColor: const Color(0xff000000),
-        child: Text(
-          j,
-          style: const TextStyle(
-            fontFamily: "Courier",
-            fontSize: 12,
-          ),
+      child: Text(
+        j,
+        style: const TextStyle(
+          fontFamily: "Courier",
+          fontSize: 13,
+          color: Colors.black,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
-    final int duration = (j.split(' ').length * .5).round();
+    final int duration = (j.split(' ').length * .4).round();
     print("The text is there for $duration seconds");
     var snackBar = SnackBar(
       // margin: EdgeInsets.zero,
       elevation: 0,
-      backgroundColor: Colors.transparent,
-      padding: const EdgeInsets.all(16.0).copyWith(bottom: 20),
+      backgroundColor: const Color.fromARGB(60, 196, 196, 196),
+      padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 20.0),
       content: content,
       duration: Duration(seconds: duration),
     );
