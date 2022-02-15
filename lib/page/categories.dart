@@ -52,14 +52,27 @@ class CategoriesPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                        height: screenH * 0.7 ~/ (64+16) * (64+16),
+                        height: screenH * 0.7 ~/ (64 + 16) * (64 + 16),
                         child: ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           itemCount: data.length,
                           itemBuilder: (context, index) {
                             String categoryTitle = data[index];
                             return categoryTitle == placeholderValue
-                                ? const Center(child: Text(placeholderValue))
+                                ? Center(
+                                    child: CircularProgressIndicator(
+                                      color: Theme.of(context).primaryColor,
+                                      strokeWidth: 6,
+                                    ),
+                                    // child: Text(
+                                    //   placeholderValue,
+                                    //   style: TextStyle(
+                                    //     fontFamily: "Courier",
+                                    //     color: Theme.of(context).primaryColor,
+                                    //     backgroundColor: Theme.of(context).backgroundColor,
+                                    //   ),
+                                    // ),
+                                  )
                                 : Column(
                                     children: [
                                       SizedBox(

@@ -14,7 +14,7 @@ abstract class Utils {
       // child: SearchResultPage([j]),
       child: BorderedText(
         strokeWidth: 5,
-        strokeColor: Color(0xff000000),
+        strokeColor: const Color(0xff000000),
         child: Text(
           j,
           style: const TextStyle(
@@ -28,11 +28,12 @@ abstract class Utils {
     print("The text is there for $duration seconds");
     var snackBar = SnackBar(
       // margin: EdgeInsets.zero,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
       padding: const EdgeInsets.all(16.0).copyWith(bottom: 24),
       content: content,
       duration: Duration(seconds: duration),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    // todo https://pub.dev/packages/rflutter_alert
   }
 }
