@@ -25,7 +25,8 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
-    // var screenSize = MediaQuery.of(context).size;
+    var screenW = MediaQuery.of(context).size.width;
+    var screenH = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
@@ -39,7 +40,9 @@ class _MenuPageState extends State<MenuPage> {
                 AboutButton(
                   onPressed: _aboutCallback,
                 ),
-                Image.network(AppRes.logoUrl),
+                Center(
+                  child: Image.network(AppRes.logoUrl, width: screenW * 0.6),
+                ),
                 const SizedBox(height: 30),
                 SizedBox(
                   height: 64,
