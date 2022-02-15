@@ -25,7 +25,7 @@ class SearchField extends StatelessWidget {
       child: TextField(
         key: key,
         controller: controller,
-        autofocus: true,
+        autofocus: false,
         decoration: InputDecoration(
           border: _border,
           focusedBorder: _border,
