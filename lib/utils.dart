@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:bordered_text/bordered_text.dart';
+import 'package:chuck_norris_app/page/content.dart';
 import 'package:flutter/material.dart';
 
 abstract class Utils {
@@ -10,6 +11,7 @@ abstract class Utils {
         sigmaX: 25,
         sigmaY: 25,
       ),
+      // child: SearchResultPage([j]),
       child: BorderedText(
         strokeWidth: 5,
         strokeColor: Color(0xff000000),
@@ -22,9 +24,11 @@ abstract class Utils {
         ),
       ),
     );
-    final int duration = (j.split(' ').length * .35).round();
+    final int duration = (j.split(' ').length * .4).round();
     print("The text is there for $duration seconds");
     var snackBar = SnackBar(
+      // margin: EdgeInsets.zero,
+      padding: const EdgeInsets.all(16.0).copyWith(bottom: 24),
       content: content,
       duration: Duration(seconds: duration),
     );

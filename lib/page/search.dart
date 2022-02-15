@@ -1,4 +1,6 @@
+import 'package:chuck_norris_app/api/api.dart';
 import 'package:chuck_norris_app/const/app_res.dart';
+import 'package:chuck_norris_app/page/content.dart';
 import 'package:chuck_norris_app/widget/button.dart';
 import 'package:chuck_norris_app/widget/pageTitleText.dart';
 import 'package:chuck_norris_app/widget/searchField.dart';
@@ -13,6 +15,17 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenW = MediaQuery.of(context).size.width;
     var screenH = MediaQuery.of(context).size.height;
+
+    void _searchCallback() async {
+      print("search pressed");
+      List<String> jokes = await Api.search(_searchFieldController.text);
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => SearchResultPage(jokes),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
@@ -23,45 +36,24 @@ class SearchPage extends StatelessWidget {
             // crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               const PageTitleText(text: "Free text search"),
-              SizedBox(height: 0.025 * screenH),
+              SizedBox(height: 0.02 * screenH),
               Image.network(
                 AppRes.chuckSearchImgUrl,
                 width: 0.69 * screenW,
               ),
-              SizedBox(height: 0.05 * screenH),
+              SizedBox(height: 0.03 * screenH),
               SizedBox(
                 height: 64,
                 child: SearchField(
                   controller: _searchFieldController,
-                  onSubmitted: (String value) async {
-                    await showDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Thanks!'),
-                          content: Text(
-                              'You typed "$value", which has length ${value.characters.length}.'),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
                 ),
               ),
+              SizedBox(height: 0.01 * screenH),
               SizedBox(
                 height: 64,
                 child: ChuckButton(
                   "Search!",
-                  onPressed: () async {
-                    print("search pressed");
-                  },
+                  onPressed: _searchCallback,
                 ),
               ),
             ],

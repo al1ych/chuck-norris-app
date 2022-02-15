@@ -6,6 +6,14 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(AppRes.aboutText);
+    return const SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Text(
+        AppRes.aboutText,
+        style: TextStyle(
+          fontFamily: "Courier",
+        ),
+      ),
+    );
   }
 }

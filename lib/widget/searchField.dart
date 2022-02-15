@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class SearchField extends StatelessWidget {
   final TextEditingController controller;
-  final Future Function(String value) onSubmitted;
 
   const SearchField({
     Key? key,
     required this.controller,
-    required this.onSubmitted,
   }) : super(key: key);
 
   @override
@@ -18,20 +16,27 @@ class SearchField extends StatelessWidget {
       child: TextField(
         key: key,
         controller: controller,
-        onSubmitted: onSubmitted,
         autofocus: true,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(36),
-            borderSide: BorderSide(
-              color: Theme.of(context).primaryColor,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(36),
+            borderSide: const BorderSide(
+              color: Colors.black,
+              style: BorderStyle.solid,
+              width: 3,
             ),
           ),
           filled: true,
           fillColor: Colors.white,
           focusColor: Theme.of(context).primaryColor,
           floatingLabelBehavior: FloatingLabelBehavior.never,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 24.0,
+          ),
           labelText: 'Your query goes here...\n(if you dare)',
           labelStyle: const TextStyle(
             fontFamily: "Courier",

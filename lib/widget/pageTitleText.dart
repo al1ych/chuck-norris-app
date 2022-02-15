@@ -12,7 +12,7 @@ class PageTitleText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BorderedText(
-      strokeColor: Colors.black,
+      strokeColor: Color(0xff151515),
       child: Text(
         text,
         style: const TextStyle(

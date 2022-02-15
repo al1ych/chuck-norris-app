@@ -77,14 +77,26 @@ class _MenuPageState extends State<MenuPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('About me!'),
+          title: const Text(
+            'About me!',
+            style: TextStyle(
+              fontFamily: "Courier",
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           content: const AboutPage(),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('OK'),
+              child: Text(
+                'Okay?',
+                style: TextStyle(
+                  fontFamily: "Courier",
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
             ),
           ],
         );

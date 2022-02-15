@@ -24,12 +24,21 @@ class Api {
     return joke;
   }
 
-  static Future<List<dynamic>> getCategories() async {
+  static Future<List<String>> getCategories() async {
     const String requestUrl = "${AppRes.apiBaseUrl}/jokes/categories";
     final Response response = await _dio.get(requestUrl);
     final List<dynamic> categoriesRaw = response.data;
     List<String> categories = categoriesRaw.map((x) => "$x").toList();
     _printDebug(requestUrl, response);
     return categories;
+  }
+
+  static Future<List<String>> search(String query) async {
+    final String requestUrl = "${AppRes.apiBaseUrl}/jokes/search?query=${query}";
+    final Response response = await _dio.get(requestUrl);
+    final List<dynamic> resultsRaw = response.data['result'];
+    List<String> results = resultsRaw.map((x) => "${x['value']}").toList();
+    _printDebug(requestUrl, response);
+    return results;
   }
 }
