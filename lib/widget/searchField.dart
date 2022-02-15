@@ -10,6 +10,15 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _border = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(36),
+      borderSide: const BorderSide(
+        color: Colors.black,
+        style: BorderStyle.solid,
+        width: 3,
+      ),
+    );
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -18,24 +27,15 @@ class SearchField extends StatelessWidget {
         controller: controller,
         autofocus: true,
         decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(36),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(36),
-            borderSide: const BorderSide(
-              color: Colors.black,
-              style: BorderStyle.solid,
-              width: 3,
-            ),
-          ),
+          border: _border,
+          focusedBorder: _border,
           filled: true,
           fillColor: Colors.white,
           focusColor: Theme.of(context).primaryColor,
           floatingLabelBehavior: FloatingLabelBehavior.never,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 20.0,
-            vertical: 24.0,
+            vertical: 26.0,
           ),
           labelText: 'Your query goes here...\n(if you dare)',
           labelStyle: const TextStyle(

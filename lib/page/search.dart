@@ -1,6 +1,6 @@
 import 'package:chuck_norris_app/api/api.dart';
 import 'package:chuck_norris_app/const/app_res.dart';
-import 'package:chuck_norris_app/page/content.dart';
+import 'package:chuck_norris_app/page/search_result.dart';
 import 'package:chuck_norris_app/widget/button.dart';
 import 'package:chuck_norris_app/widget/pageTitleText.dart';
 import 'package:chuck_norris_app/widget/searchField.dart';
@@ -17,8 +17,9 @@ class SearchPage extends StatelessWidget {
     var screenH = MediaQuery.of(context).size.height;
 
     void _searchCallback() async {
-      print("search pressed");
-      List<String> jokes = await Api.search(_searchFieldController.text);
+      final txt = _searchFieldController.text;
+      if (txt.isEmpty) return;
+      List<String> jokes = await Api.search(txt);
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => SearchResultPage(jokes),

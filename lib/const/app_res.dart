@@ -21,5 +21,11 @@ class AppRes {
       "And I am here to learn more and practice!\n\n"
       "You can contact me on Telegram: @aladdinych\n\n"
       "P. S. How do I get into Yandex? 🤔";
+
+  // search result page
+  static const String noResult = "Sorry...\n"
+      "We couldn't find anything :c\n\n"
+      "But Chuck Norris COULD find YOU\n"
+      "Sorry again...";
 }
 
