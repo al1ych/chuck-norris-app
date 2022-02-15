@@ -48,56 +48,51 @@ class CategoriesPage extends StatelessWidget {
                 ),
                 Align(
                   alignment: AlignmentDirectional.bottomCenter,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        height: screenH * 0.7 ~/ (64 + 16) * (64 + 16),
-                        child: ListView.separated(
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: data.length,
-                          itemBuilder: (context, index) {
-                            String categoryTitle = data[index];
-                            return categoryTitle == placeholderValue
-                                ? Center(
-                                    child: CircularProgressIndicator(
-                                      color: Theme.of(context).primaryColor,
-                                      strokeWidth: 6,
-                                    ),
-                                    // child: Text(
-                                    //   placeholderValue,
-                                    //   style: TextStyle(
-                                    //     fontFamily: "Courier",
-                                    //     color: Theme.of(context).primaryColor,
-                                    //     backgroundColor: Theme.of(context).backgroundColor,
-                                    //   ),
-                                    // ),
-                                  )
-                                : Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 64,
-                                        child: ChuckButton(
-                                          categoryTitle,
-                                          onPressed: () async {
-                                            print("tapped $categoryTitle");
-                                            final String joke =
-                                                await Api.getRandomJoke(
-                                                    category: categoryTitle);
-                                            Utils.showJoke(context, joke);
-                                          },
-                                        ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          height: screenH * 0.7 ~/ (64 + 16) * (64 + 16),
+                          child: ListView.separated(
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: data.length,
+                            itemBuilder: (context, index) {
+                              String categoryTitle = data[index];
+                              return categoryTitle == placeholderValue
+                                  ? Center(
+                                      child: CircularProgressIndicator(
+                                        color: Theme.of(context).primaryColor,
+                                        strokeWidth: 6,
                                       ),
-                                    ],
-                                  );
-                          },
-                          separatorBuilder: (BuildContext context, int index) {
-                            return const SizedBox(height: 16);
-                          },
+                                    )
+                                  : Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 64,
+                                          child: ChuckButton(
+                                            categoryTitle,
+                                            onPressed: () async {
+                                              print("tapped $categoryTitle");
+                                              final String joke =
+                                                  await Api.getRandomJoke(
+                                                      category: categoryTitle);
+                                              Utils.showJoke(context, joke);
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                            },
+                            separatorBuilder: (BuildContext context, int index) {
+                              return const SizedBox(height: 16);
+                            },
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 42),
-                    ],
+                        const SizedBox(height: 42),
+                      ],
+                    ),
                   ),
                 ),
               ],
